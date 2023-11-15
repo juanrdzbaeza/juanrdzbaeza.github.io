@@ -7,12 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Juan A. Rodríguez-Baeza</title>
   <link rel="icon" href="images/avatar.jpg">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
   <link rel="preload" as="style"
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap" />
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap"
-    media="print" onload="this.media='all'" />
+    media="print" onload="" />
   <noscript>
     <link rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap" />
@@ -43,7 +43,7 @@
                 <a class="nav-link" href="https://www.linkedin.com/in/juanrdzbaeza/" title="Linkedin">
                 <i class="fab fa-linkedin"></i><span class="menu-title sr-only">Linkedin</span></a>
               </li>
-              
+
               <li class="nav-item"><a class="nav-link" href="https://gitlab.com/juanrdzbaeza" title="Gitlab"><i
                     class="fab fa-gitlab"></i><span class="menu-title sr-only">Gitlab</span></a>
               </li><!--
@@ -70,7 +70,7 @@
           <div class="row">
             <div class="col-lg-4 col-md-5">
               <div class="avatar hover-effect bg-white shadow-sm p-1"><img src="images/avatar.jpg" width="200"
-                  height="200" /></div>
+                  height="200"  alt=""/></div>
             </div>
             <div class="col-lg-8 col-md-7 text-center text-md-start">
               <h2 class="h1 mt-2" data-aos="fade-left" data-aos-delay="0">Juan A. Rodríguez-Baeza</h2>
@@ -97,7 +97,7 @@
                   <div class="pb-1">Age</div>
                 </div>
                 <div class="col-sm-8">
-                  <div class="pb-1 text-secondary">40</div>
+                  <div id="calculated-age" class="pb-1 text-secondary">40</div>
                 </div>
                 <div class="col-sm-4">
                   <div class="pb-1">Email</div>
@@ -109,7 +109,7 @@
                   <div class="pb-1">Phone</div>
                 </div>
                 <div class="col-sm-8">
-                  <div class="pb-1 text-secondary">+34 625 993 716</div>
+                  <div class="pb-1 text-secondary">+34 635 990 955</div>
                 </div>
                 <div class="col-sm-4">
                   <div class="pb-1">Address</div>
@@ -230,8 +230,8 @@
               <div class="card-body">
                 <div class="h5 mb-1">FPI (contrato industrial predoctoral con Air Bus) <span class="text-muted h6">at Universidad de Cádiz</span></div>
                 <div class="text-muted text-small mb-2">Sep, 2018 - Mar, 2021</div>
-                <div>Position completely related to R&D associated with the Airbus contract. During the stay, research was carried out as described in the paper 
-                <a href="http://ieeexplore.ieee.org/document/9476278">https://ieeexplore.ieee.org/document/9476278</a>
+                <div>Position completely related to R&D associated with the Airbus contract. During the stay, research was carried out as described in the paper
+                <a href="https://ieeexplore.ieee.org/document/9476278">https://ieeexplore.ieee.org/document/9476278</a>
                 </div>
               </div>
             </div>
@@ -239,14 +239,14 @@
               <div class="card-body">
                 <div class="h5 mb-1">Programador en Asetir S.L.U. <span class="text-muted h6">at JCarrion Group</span></div>
                 <div class="text-muted text-small mb-2">Feb, 2018 - Ago, 2019</div>
-                <div>Tasks related to R&D due to the internship nature of the position, it was proposed to develop an application for mobile devices to replace the paper forms of the company's vehicle tickets/status.</a></div>
+                <div>Tasks related to R&D due to the internship nature of the position, it was proposed to develop an application for mobile devices to replace the paper forms of the company's vehicle tickets/status.</div>
               </div>
             </div>
             <div class="timeline-card timeline-card-primary card shadow-sm">
               <div class="card-body">
                 <div class="h5 mb-1">Técnico informático <span class="text-muted h6">at delegación provincial de Tráfico de Almería</span></div>
                 <div class="text-muted text-small mb-2">Ago 2016 y Ago 2017</div>
-                <div>Microcomputer level tasks, technical profile of Vocational Training.</a></div>
+                <div>Microcomputer level tasks, technical profile of Vocational Training.</div>
               </div>
             </div>
           </div>
@@ -360,8 +360,8 @@
                 <div>Workplace Training in the European Union (Scholarship). Professional School Amar Terra Verde, Vila Verde (Portugal). Training period in <a href="https://verdedata.pt/">VERDEDATA</a>.</div>
               </div>
             </div>
-            
-            
+
+
           </div>
         </div>
 
@@ -375,16 +375,19 @@
                 <form action="https://formspree.io/f/xvojvpkj" method="POST">
                   <div class="row">
                     <div class="col-6">
+                      <label for="name">Name</label>
                       <input class="form-control" type="text" id="name" name="name" placeholder="Your Name" required>
                     </div>
                     <div class="col-6">
+                      <label for="email">e-mail</label>
                       <input class="form-control" type="email" id="email" name="_replyto" placeholder="Your E-mail"
-                        required>
+                                                        required>
                     </div>
                   </div>
                   <div class="form-group my-2">
+                    <label for="message">Message</label>
                     <textarea class="form-control" style="resize: none;" id="message" name="message" rows="4"
-                      placeholder="Your Message" required></textarea>
+                                                           placeholder="Your Message" required></textarea>
                   </div>
                   <button class="btn btn-primary mt-2" type="submit">Send</button>
                 </form>
@@ -457,7 +460,7 @@
         </div>
       </div>
       <div class="text-small">
-        
+
       </div>
 
       <div class="container">
@@ -469,6 +472,23 @@
   <script src="js/bootstrap.bundle.min.js?ver=1.2.0"></script>
   <script src="js/aos.js?ver=1.2.0"></script>
   <script src="js/main.js?ver=1.2.0"></script>
+  <script>
+    var dateString = "03/31/1983"; // Mar 31
+    var dateObject = new Date(dateString);
+    document.querySelector("#calculated-age").textContent = calcularEdad(dateObject);
+    function calcularEdad(fecha) {
+        var hoy = new Date();
+        var cumpleanos = new Date(fecha);
+        var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+        var m = hoy.getMonth() - cumpleanos.getMonth();
+
+        if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+            edad--;
+        }
+
+        return edad;
+    }
+</script>
 </body>
 
 </html>
