@@ -553,18 +553,21 @@
             </div>
         </div>
 
-
-                </a>
-              </li>
-            </ul>
-          </nav>
+        <div class="container" >
+            <div class="row">
+                <div class="col-md-12">
+                    <video src="" controls loop autoplay class="img-fluid"></video>
+                </div>
+            </div>
+            <div class="row">
+                <div class="container">
+                    <button id="selectVideoButton" class="btn btn-primary">Select Video</button>
+                    <input type="file" id="videoFileInput" accept="video/*" style="visibility: hidden" >
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="text-small">
 
         <div class="text-small">
-
-
 
         </div>
 
@@ -593,6 +596,18 @@
 
         return edad;
     }
+</script>
+<script>
+    document.getElementById("selectVideoButton").addEventListener("click", function() {
+        document.getElementById("videoFileInput").click();
+    });
+
+    document.getElementById("videoFileInput").addEventListener("change", function() {
+        let selectedFile = this.files[0];
+        let videoElement = document.querySelector("video");
+        videoElement.src = URL.createObjectURL(selectedFile);
+        videoElement.load();
+    });
 </script>
 </body>
 
