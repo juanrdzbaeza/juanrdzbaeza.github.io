@@ -309,3 +309,22 @@ function togglePlay() {
     player.pause();
   }  
 }
+
+function updateSongInfo() {
+	$.getJSON('https://public.radio.co/api/v2/sff9c88138/track/current', function(response) {
+		if (response && response.data) {
+			$('.song-title').text(response.data.track_title);
+			$('.song-artist').text(response.data.track_artist);
+			$('.song-cover').attr('src', response.data.artwork_urls.large);
+
+			// Show start time in #current-time
+			//const startTime = new Date(response.data.start_time);
+			//const formatted = startTime.getHours().toString().padStart(2, '0') + ':' +
+			//	startTime.getMinutes().toString().padStart(2, '0');
+			//$('.current-time').text(formatted);
+		}
+	});
+}
+
+setInterval(updateSongInfo, 10000);
+updateSongInfo();

@@ -3,9 +3,9 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" href="resources/img/356640511_3603677906619935_6247400613519362885_n.jpg">
+  <link rel="icon" href="resources/img/screaming-sparrow.svg" type="image/svg+xml">
 
-  <title>Harley Davidson ⚡ Custom Chopper</title>
+  <title> ⚡ Screaming Sparrow ⚡ </title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
   <script src="https://use.typekit.net/hoy3lrg.js"></script>
   <script>try { Typekit.load({ async: true }); } catch (e) { }</script>
@@ -13,6 +13,7 @@
         rel="stylesheet">
   <link rel="stylesheet" href="resources/css/style.css">
 
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -34,7 +35,7 @@
           <div class="jcarousel">
             <ul id="songs">
               <li class="song" data-audio="https://stream.radio.co/sff9c88138/listen" data-color="#f38578">
-                <img src="resources/img/sff9c88138.20230622084503.png" alt="">
+                <img class="song-cover" src="resources/img/sff9c88138.20230622084503.png" alt="">
                 <p class="song-title">RADIO</p>
                 <p class="song-artist">Ride Time Radio</p>
               </li>
@@ -49,7 +50,7 @@
             <span id="next-btn"><i class="fa fa-step-forward fa-fw" aria-hidden="true"></i></span>
           </div>
           <div id="timeline">
-            <span id="current-time">--:--</span>
+            <span id="current-time" class="current-time">--:--</span>
             <span id="total-time">--:--</span>
             <div class="slider" data-direction="horizontal">
               <div class="progress">
