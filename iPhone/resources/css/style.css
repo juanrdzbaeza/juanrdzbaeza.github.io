@@ -746,3 +746,48 @@ div#home-screen div.home-content div.app-icon .svg {
   height: 60%;
   width: 60%;
 }
+
+/* Add to resources/css/style.css */
+.volume-vertical {
+  position: absolute;
+  left: 0;
+  top: 60%;
+  transform: translateY(-50%);
+  height: 240px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+#volume-vertical-slider {
+  writing-mode: bt-lr; /* vertical orientation */
+  -webkit-appearance: slider-vertical;
+  width: 32px;
+  height: 240px;
+  background: transparent;
+  accent-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+#volume-vertical-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: #fff;
+  border: 2px solid #e0e0e0;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+}
+
+#volume-vertical-slider::-webkit-slider-runnable-track {
+  background: #fff;
+  border-radius: 16px;
+  height: 80px;
+}
+
+#volume-vertical-slider:focus {
+  outline: none;
+}
