@@ -42,6 +42,12 @@ $(document).ready(function () {
 	$('.jcarousel').jcarousel({
 			wrap: 'circular'
 	});
+
+	const audio = $('audio')[0];
+	$('#volume-vertical-slider').on('input', function() {
+		audio.volume = $(this).val();
+	});
+
 });
 
 /*
