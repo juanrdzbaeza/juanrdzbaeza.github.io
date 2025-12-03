@@ -87,9 +87,7 @@
                         <h2 class="h1 mt-2" data-aos="fade-left" data-aos-delay="0">Juan A. Rodríguez-Baeza</h2>
                         <p data-aos="fade-left" data-aos-delay="100"></p>
                         <div class="d-print-none" data-aos="fade-left" data-aos-delay="200">
-                            <a class="btn btn-light text-dark shadow-sm mt-1 me-1" href="juanrdzbaeza-github-io.pdf"
-                               target="_blank">Download
-                                CV</a>
+                            <button id="downloadCV" class="btn btn-light text-dark shadow-sm mt-1 me-1">Download CV</button>
                             <a class="btn btn-success shadow-sm mt-1" href="#contact">Contact me</a>
                         </div>
                     </div>
@@ -652,6 +650,76 @@
 <script src="js/bootstrap.bundle.min.js?ver=1.2.0"></script>
 <script src="js/aos.js?ver=1.2.0"></script>
 <script src="js/main.js?ver=1.2.0"></script>
+<!-- html2pdf (html2canvas + jsPDF) - used to render the page to PDF client-side -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+<script>
+    // Download current CV as PDF by rendering the .cover element
+    document.getElementById('downloadCV').addEventListener('click', async function () {
+        const element = document.querySelector('.cover');
+        if (!element) return alert('Cover element not found');
+
+        // If the page is opened via file:// the browser will block canvas export for cross-origin images.
+        // Avoid attempting html2pdf in that case and fallback to the pre-generated PDF.
+        if (window.location.protocol === 'file:') {
+            alert('This page is loaded from the local file system (file://).\nClient-side PDF generation is blocked by browser security for local files with external resources.\n\nDownloading the pre-generated PDF instead.\n\nTo enable client-side generation, serve the site over HTTP (see suggestions).');
+            window.location.href = 'juanrdzbaeza-github-io.pdf';
+            return;
+        }
+
+        // Hide elements we don't want in the PDF
+        const hidden = [];
+        ['iframe', 'video', '#selectVideoButton', '#videoFileInput'].forEach(sel => {
+            document.querySelectorAll(sel).forEach(el => {
+                hidden.push({el: el, old: el.style.display});
+                el.style.display = 'none';
+            });
+        });
+
+        // Small delay to allow layout updates (smoother rendering)
+        await new Promise(r => setTimeout(r, 150));
+
+        // When served over HTTP(S), set crossOrigin on images inside the cover and wait for them to load.
+        // This helps html2canvas fetch images with CORS enabled and avoid tainted canvases (server must allow CORS).
+        if (window.location.protocol.startsWith('http')) {
+            const imgs = Array.from(element.querySelectorAll('img'));
+            const loadPromises = imgs.map(img => {
+                try { img.crossOrigin = 'anonymous'; } catch(e) {}
+                if (img.complete) return Promise.resolve();
+                return new Promise(resolve => {
+                    img.addEventListener('load', resolve, {once: true});
+                    img.addEventListener('error', resolve, {once: true});
+                });
+            });
+            await Promise.all(loadPromises);
+        }
+
+        const opt = {
+            margin:       0.4,
+            filename:     'juanrdzbaeza-github-io.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2, useCORS: true, logging: false },
+            jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+        };
+
+        try {
+            await html2pdf().set(opt).from(element).save();
+        } catch (err) {
+            console.error('Error generating PDF:', err);
+            // Detect tainted canvas / cross-origin image errors (html2canvas -> toDataURL SecurityError)
+            const msg = (err && err.message) ? err.message.toLowerCase() : '';
+            if (err && (err.name === 'SecurityError' || msg.includes('tainted') || msg.includes('securityerror'))) {
+                alert('Client-side PDF generation failed due to cross-origin image security (tainted canvas).\n\nFalling back to downloading the pre-generated PDF.\n\nTo enable client-side PDF generation, serve this site over HTTP (e.g. run a local server) or host it (GitHub Pages).');
+                // Fallback: download the server-generated PDF that we created earlier
+                window.location.href = 'juanrdzbaeza-github-io.pdf';
+            } else {
+                alert('There was an error generating the PDF. See console for details.');
+            }
+        } finally {
+            // Restore hidden elements
+            hidden.forEach(item => item.el.style.display = item.old || '');
+        }
+    });
+</script>
 <script>
     let dateString = "03/31/1983"; // Mar 31
     let dateObject = new Date(dateString);
